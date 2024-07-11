@@ -1,0 +1,18 @@
+{
+  "name": "terminalnodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "showtime": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ai": "^3.2.22",
+    "ollama-ai-provider": "^0.10.0"
+  }
+}
