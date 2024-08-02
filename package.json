@@ -13,6 +13,8 @@
   "description": "",
   "dependencies": {
     "ai": "^3.2.22",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
     "ollama-ai-provider": "^0.10.0"
   }
 }

@@ -1,0 +1,8 @@
+<h1>Streaming Text</h1>
+<pre id="streaming-text">
+  Waiting for text...
+</pre>
+<div id="ssediv" hx-ext="sse" sse-connect="<%= endpoint %>">
+  <div sse-swap="message" hx-target="#streaming-text" hx-swap="outerHTML"></div>
+  <div sse-swap="finished" hx-target="#ssediv" hx-swap="outerHTML"></div>
+</div>

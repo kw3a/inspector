@@ -1,51 +1,43 @@
-import { spawn } from "child_process";
-import { streamText } from "ai";
-import { ollama } from "ollama-ai-provider";
-const model = ollama("phi3");
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { saveCommand, saveError, commands } from './api.js';
+import { streamCommandStarter, streamErrorStarter, chatView} from './views.js';
+import { sseCommands, sseErrors } from './prompts.js';
 
-async function doSomething(data) {
-  let prompt = "Explica el siguiente error, de la forma más resumida posible y en español: " + data.toString();
-  const { textStream } = await streamText({
-    model,
-    prompt: prompt,
-  });
+const app = express();
+const PORT = 3000;
 
-  process.stdout.write('\x1b[32m');
-  console.log("INSPECTOR: ");
-  for await (const textPart of textStream) {
-    process.stdout.write(textPart);
-  }
-  process.stdout.write('\x1b[0m');
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-function main() {
-  const args = process.argv.slice(2);
-  if (args.length === 0) {
-    console.log("Please provide a command");
-    process.exit(1);
-  }
+// Configurar el motor de plantillas EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.json());
 
-  const command = args.join(" ");
+// Datos de ejemplo para renderizar en la plantilla
 
-  const cmd = spawn("bash", ["-c", command], {
-    stdio: ["inherit", "pipe", "pipe"],
-  });
+app.get('/', (_, res) => {
+  res.render('index', { title: 'Command List', commands: commands});
+});
+app.get('/api/healthz', (_, res) => {
+  res.send('ok');
+});
+app.post('/api/commands/:id', saveCommand);
+app.post('/api/commands/:id/:error_id', saveError);
 
-  cmd.stdout.on("data", (data) => {
-    process.stdout.write(data);
-  });
+app.get('/singular/:id', chatView);
+app.get('/analize/:id', streamCommandStarter);
+app.get('/analize/:id/:error_id', streamErrorStarter);
+app.get('/stream/:id', sseCommands);
+app.get('/stream/:id/:error_id', sseErrors);
+/*
+app.get('/events', streamEvents);
 
-  cmd.stderr.on("data", (data) => {
-    process.stderr.write(data);
-    doSomething(data);
-  });
 
-  cmd.on("close", (code) => {
-    console.log(`Child process exited with code ${code}`);
-  });
-
-  cmd.on("error", (err) => {
-    console.error("Failed to start command:", err);
-  });
-}
-main();
+app.get('/stream-text', streamText);
+*/
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
