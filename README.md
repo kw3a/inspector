@@ -5,6 +5,7 @@ $ cd inspector
 $ npm install
 $ npm run dev
 ```
+Go to http://localhost:3000
 ## SHORTCUT INSTALATION (optional)
 /shortcut/bin/inspector.sh and /shortcut/bin/<so>/inspector are valid options.
 ```bash
