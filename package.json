@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "showtime": "node index.js",
+    "build:css": "npx tailwindcss -i ./styles/input.css -o ./styles/output.css --watch",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,5 +17,9 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "ollama-ai-provider": "^0.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "tailwindcss": "^3.4.7"
   }
 }

@@ -1,0 +1,7 @@
+<div id="chat-container" class="flex flex-row divide-x divide-shark-900">
+  <div id="command-chat" class="w-1/2 p-2">
+  <%- include('command_chat', {command: command}); %>
+  </div>
+  <div id="error-chat" class="w-1/2 p-2"></div>
+</div>
+<%- include('error_list', {command: command, errors: command.errors}); %>

@@ -1,0 +1,12 @@
+<div class="flex justify-between text-shark-400 text-sm">
+  <p><%= command.time %></p>
+  <p><%= command.id %></p>
+</div>
+<p class="font-semibold text-center"><%= command.command %> </p>
+<div id="cmd-sse-gen"></div>
+<p id="command-summary" class="text-blue-300"></p>
+<div class="flex justify-center">
+  <button 
+  class="rounded bg-shark-600 hover:bg-shark-500 text-blue-300 px-2"
+  hx-get="analize/<%= command.id %>" hx-target="#cmd-sse-gen">Analizar</button>
+</div>

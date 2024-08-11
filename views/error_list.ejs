@@ -1,0 +1,21 @@
+<div id="error-list" 
+class="flex flex-col gap-1 p-1">
+  <p class="text-xl">Errores</p>
+  <% if (errors.size > 0) { %>
+    <% errors.forEach((value, key)=> { %>
+      <%- include('error_card', {command: command, error: value}) %>
+    <% }) %>
+
+  <% } else { %>
+    <p>Errors not found</p>
+  <% } %>
+  <% if (!command.finished) { %>
+    <div id="error-listener" hx-ext="sse" sse-connect="/newerrors/<%= command.id %>">
+      <div sse-swap="message" hx-target="#error-list" hx-swap="afterbegin"></div>
+      <div sse-swap="finished" hx-target="#error-list" hx-swap="afterbegin"></div>
+      <div sse-swap="finished" hx-target="#error-listener" hx-swap="delete"></div>
+    </div>
+  <% } else { %>
+    <p> The command has been completed </p>
+  <% } %>
+</div>

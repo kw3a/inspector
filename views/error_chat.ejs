@@ -1,0 +1,12 @@
+<div class="flex justify-between text-shark-400 text-sm">
+  <p><%= error.time %></p>
+  <p><%= error.error_id %></p>
+</div>
+<p class="font-semibold text-center"><%= error.cmd_error%></p>
+<div id="err-sse-gen"></div>
+<p id="error-summary" class="text-orange-300"></p>
+<div class="flex justify-center">
+  <button 
+  class="rounded bg-shark-600 hover:bg-shark-500 text-orange-300 px-2"
+  hx-get="/analize/<%= command.id %>/<%= error.error_id %>" hx-target="#err-sse-gen">Analizar</button>
+</div>

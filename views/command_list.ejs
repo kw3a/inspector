@@ -1,0 +1,14 @@
+<div class="w-1/3 ">
+  <p class="font-semibold">Comandos</p>
+  <div id="command-list" class="flex flex-col overflow-y-auto p-1 gap-1">
+    <% if (commands.size > 0) { %>
+      <% commands.forEach(command=> { %>
+          <%- include('command_card', {command: command}); %>
+      <% }) %>
+    <% } else { %>
+      <p>Commands not found</p>
+    <% } %>
+    <div hx-ext="sse" sse-connect="/newcommands" sse-swap="message" hx-target="#command-list" hx-swap="afterbegin">
+    </div>
+  </div>
+</div>

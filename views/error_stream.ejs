@@ -1,0 +1,4 @@
+<div id="error-summary-gen" hx-ext="sse" sse-connect="/stream/<%= command.id %>/<%= error.error_id %>">
+  <div sse-swap="message" hx-target="#error-summary" hx-swap="beforeend"></div>
+  <div sse-swap="finished" hx-target="#error-summary-gen" hx-swap="delete"></div>
+</div>

@@ -1,0 +1,9 @@
+<div 
+class="min-h-24 bg-shark-900 rounded border border-shark-800 hover:bg-shark-700"
+hx-get="/commandchat/<%= command.id %>" hx-trigger="click" hx-target="#workspace">
+  <div class="flex justify-between text-shark-400 text-sm">
+    <p><%= command.time %></p>
+    <p><%= command.id %></p>
+  </div>
+  <p class="p-4 font-semibold"><%= command.command%></p>
+</div>

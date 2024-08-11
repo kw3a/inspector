@@ -1,0 +1,4 @@
+<div id="command-summary-gen" hx-ext="sse" sse-connect="/stream/<%= command.id %>">
+  <div sse-swap="message" hx-target="#command-summary" hx-swap="beforeend"></div>
+  <div sse-swap="finished" hx-target="#command-summary-gen" hx-swap="delete"></div>
+</div>

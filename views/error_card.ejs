@@ -1,0 +1,9 @@
+<div 
+class="bg-shark-900 p-2 rounded border border-shark-800 text-orange-300 hover:bg-shark-700"
+hx-get="/errorchat/<%= command.id %>/<%= error.error_id %>" hx-trigger="click" hx-target="#error-chat">
+  <div class="flex justify-between text-shark-400 text-sm">
+    <p> <%= error.time %></p>
+    <p> <%= error.error_id %></p>
+  </div>
+  <p> <%= error.cmd_error %></p>
+</div>
