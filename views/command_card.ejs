@@ -1,9 +1,9 @@
 <div 
-class="min-h-24 bg-shark-900 rounded border border-shark-800 hover:bg-shark-700"
+class="min-h-24 bg-shark-900/60 rounded border border-shark-800 hover:bg-shark-800 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-shark-600 cursor-pointer"
 hx-get="/commandchat/<%= command.id %>" hx-trigger="click" hx-target="#workspace">
-  <div class="flex justify-between text-shark-400 text-sm">
-    <p><%= command.time %></p>
-    <p><%= command.id %></p>
+  <div class="flex justify-between items-center px-3 pt-2 text-shark-400 text-xs">
+    <p class="truncate"><%= command.time %></p>
+    <p class="opacity-50 truncate">#<%= command.id %></p>
   </div>
-  <p class="p-4 font-semibold"><%= command.command%></p>
+  <p class="px-3 py-3 font-semibold text-shark-50 leading-snug"><%= command.command%></p>
 </div>

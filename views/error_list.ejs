@@ -1,13 +1,15 @@
 <div id="error-list" 
-class="flex flex-col gap-1 p-1">
-  <p class="text-xl">Errores</p>
+class="flex flex-col gap-2 p-2">
+  <div class="sticky top-0 z-10 bg-shark-950/80 backdrop-blur px-2 py-2 border-b border-shark-900">
+    <p class="text-sm font-semibold tracking-tight text-shark-200">Errors</p>
+  </div>
   <% if (errors.size > 0) { %>
     <% errors.forEach((value, key)=> { %>
       <%- include('error_card', {command: command, error: value}) %>
     <% }) %>
 
   <% } else { %>
-    <p>Errors not found</p>
+    <p class="text-sm text-shark-500 px-2">No errors yet</p>
   <% } %>
   <% if (!command.finished) { %>
     <div id="error-listener" hx-ext="sse" sse-connect="/newerrors/<%= command.id %>">
@@ -16,6 +18,6 @@ class="flex flex-col gap-1 p-1">
       <div sse-swap="finished" hx-target="#error-listener" hx-swap="delete"></div>
     </div>
   <% } else { %>
-    <p> The command has been completed </p>
+    <p class="text-xs text-shark-500 px-2"> The command has been completed </p>
   <% } %>
 </div>
